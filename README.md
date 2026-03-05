@@ -7,6 +7,7 @@ The app is built using clean architecture concepts with Firebase integration for
 
 - 🔐 Authentication (Firebase Auth & Social Login)
   - Email/Password login
+  - Google Authentication
   - Facebook Authentication
 - 🏠 Home screen with products & categories
 - ⭐ Best Selling Fruits section
