@@ -1,0 +1,38 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frutes_app/features/home/presentation/cubits/cart_cubits/cart_cubit.dart';
+import 'package:frutes_app/features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
+import 'package:frutes_app/features/home/presentation/views/widgets/main_view_body_bloc_consumer.dart';
+
+class MainView extends StatefulWidget {
+  const MainView({super.key});
+  static const routeName = 'mainview';
+
+  @override
+  State<MainView> createState() => _MainViewState();
+}
+
+class _MainViewState extends State<MainView> {
+  int currentViewIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<CartCubit>(
+      create: (context) => CartCubit(),
+      child: PopScope(
+        canPop: false,
+        child: Scaffold(
+          bottomNavigationBar: CustomBottomNavigationBar(
+            onItemTapped: (index) {
+              currentViewIndex = index;
+              setState(() {});
+            },
+          ),
+          body: SafeArea(
+            child: MainViewBodyBlocConsumer(currentViewIndex: currentViewIndex),
+          ),
+        ),
+      ),
+    );
+  }
+}
