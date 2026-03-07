@@ -1,3 +1,4 @@
+import 'package:frutes_app/core/entites/order_product_entity.dart';
 import 'package:frutes_app/features/home/doamin/entites/cart_entity/cart_item_entity.dart';
 
 class OrderProductModel {
@@ -24,6 +25,24 @@ class OrderProductModel {
       imageUrl: cartItemEntity.productEntity.imageUrl!,
       price: cartItemEntity.productEntity.price.toDouble(),
       quantity: cartItemEntity.quantity,
+    );
+  }
+  factory OrderProductModel.fromJson(Map<String, dynamic> json) {
+    return OrderProductModel(
+      name: json['name'],
+      code: json['code'],
+      imageUrl: json['imageUrl'],
+      price: json['price'],
+      quantity: json['quantity'],
+    );
+  }
+  OrderProductEntity toEntity() {
+    return OrderProductEntity(
+      name: name,
+      code: code,
+      imageUrl: imageUrl,
+      price: price,
+      quantity: quantity,
     );
   }
 

@@ -30,6 +30,7 @@ class ShippingAddressModel {
   String toString() {
     return '$address $floor $city';
   }
+  
 
   Map<String, dynamic> toJson() {
     return {

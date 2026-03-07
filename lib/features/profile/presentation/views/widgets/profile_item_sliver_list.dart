@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frutes_app/core/cubits/theme_cubit/theme_cubit.dart';
 import 'package:frutes_app/core/utils/app_images.dart';
 import 'package:frutes_app/features/profile/presentation/views/favorite_view.dart';
+import 'package:frutes_app/features/profile/presentation/views/orders_view.dart';
 import 'package:frutes_app/features/profile/presentation/views/widgets/profile_language_item.dart';
 import 'package:frutes_app/features/profile/presentation/views/widgets/profile_menu_item.dart';
 import 'package:frutes_app/features/profile/presentation/views/widgets/profile_toggle_item.dart';
@@ -31,7 +32,9 @@ class _ProfileItemSliverListState extends State<ProfileItemSliverList> {
             ProfileMenuItem(
               icon: Assets.assetsImagesProfileIconsVuesaxOutlineBox,
               title: 'طلباتي',
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, OrdersView.routeName);
+              },
             ),
             ProfileMenuItem(
               icon: Assets.assetsImagesProfileIconsVuesaxOutlineEmptyWallet,

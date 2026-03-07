@@ -9,7 +9,7 @@ class CustomTextFormField extends StatefulWidget {
     this.suffixIcon,
     this.onSaved,
     this.obscureText = false,
-    this.controller,
+    this.controller, this.initialValue,
   });
 
   final String hintText;
@@ -18,6 +18,7 @@ class CustomTextFormField extends StatefulWidget {
   final void Function(String?)? onSaved;
   final bool obscureText;
   final TextEditingController? controller;
+  final String? initialValue;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -38,6 +39,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     final isDark = theme.brightness == Brightness.dark;
 
     return TextFormField(
+      initialValue: widget.initialValue,
       controller: widget.controller,
       obscureText: isObscure,
       onSaved: widget.onSaved,

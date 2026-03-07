@@ -10,6 +10,7 @@ import 'package:frutes_app/features/home/presentation/views/main_view.dart';
 import 'package:frutes_app/features/home/presentation/views/product_details_view.dart';
 import 'package:frutes_app/features/onboarding/presentation/views/on_boarding_view.dart';
 import 'package:frutes_app/features/profile/presentation/views/favorite_view.dart';
+import 'package:frutes_app/features/profile/presentation/views/orders_view.dart';
 import 'package:frutes_app/features/profile/presentation/views/who_are_we_view.dart';
 import 'package:frutes_app/features/splach/presentation/views/splach_view.dart';
 
@@ -30,6 +31,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const BestSellingView());
     case WhoAreWeView.routeName:
       return MaterialPageRoute(builder: (context) => const WhoAreWeView());
+    case OrdersView.routeName:
+      return MaterialPageRoute(builder: (context) => const OrdersView());
     case FavoriteView.routeName:
       return MaterialPageRoute(
         builder: (context) => const FavoriteView(),

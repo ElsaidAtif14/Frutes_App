@@ -11,11 +11,16 @@ class OrdersRepoImpl implements OrdersRepo {
 
   OrdersRepoImpl(this.dataBaseService);
   @override
+  // OrdersRepoImpl.dart
+  @override
   Future<Either<Failure, void>> addOrder({required OrderEntity order}) async {
     try {
-      dataBaseService.addData(
+      var orderModel = OrderModel.fromEntity(order);
+
+      await dataBaseService.addData(
         path: BackendEndpoint.addOrders,
-        data: OrderModel.fromEntity(order).toJson(),
+        documentId: orderModel.orderId,
+        data: orderModel.toJson(),
       );
       return Right(null);
     } catch (e) {

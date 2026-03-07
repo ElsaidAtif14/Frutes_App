@@ -15,6 +15,7 @@ class AddOrderCubitBlocBuilder extends StatelessWidget {
       listener: (context, state) {
         if (state is AddOrderSuccess) {
           // showBar(context, 'تمت العملية بنجاح');
+          Navigator.pop(context);
         }
 
         if (state is AddOrderFailure) {

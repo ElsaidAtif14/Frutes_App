@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frutes_app/core/helper/get_user.dart';
 import 'package:frutes_app/core/widgets/custom_text_form_field.dart';
 import 'package:frutes_app/features/checkout/domain/entites/order_entity.dart';
 import 'package:gap/gap.dart';
@@ -35,6 +36,7 @@ class AddressInputSection extends StatelessWidget {
                   },
                   hintText: 'الاسم كامل',
                   textInputType: TextInputType.text,
+                  initialValue: getUser().name,
                 ),
                 const Gap(16),
                 CustomTextFormField(
@@ -42,6 +44,7 @@ class AddressInputSection extends StatelessWidget {
                     context.read<OrderEntity>().shippingAddressEntity.email =
                         value!;
                   },
+                  initialValue: getUser().email,
                   hintText: 'البريد الإلكتروني',
                   textInputType: TextInputType.text,
                 ),

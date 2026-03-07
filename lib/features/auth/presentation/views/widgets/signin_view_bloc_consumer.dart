@@ -9,7 +9,7 @@ import 'package:frutes_app/features/home/presentation/views/main_view.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SigninViewBlocConsumer extends StatelessWidget {
-  const SigninViewBlocConsumer({super.key});
+  const  SigninViewBlocConsumer({super.key});
 
   @override
   Widget build(BuildContext context) {

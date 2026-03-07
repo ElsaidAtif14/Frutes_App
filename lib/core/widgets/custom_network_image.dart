@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomNetworkImage extends StatelessWidget {
@@ -9,7 +11,16 @@ class CustomNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadiusGeometry.circular(6),
-      child: Image.network(fit: BoxFit.fill, imageUrl),
+      child: CachedNetworkImage(
+        imageUrl: imageUrl,
+        fit: BoxFit.fill  ,
+        placeholder: (context, url) => const SizedBox(
+          width: 24,
+          height: 24,
+          child: CupertinoActivityIndicator(),
+        ),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+      ),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:frutes_app/features/checkout/data/models/order_product_model.dart';
+import 'package:frutes_app/core/models/order_product_model.dart';
 import 'package:frutes_app/features/checkout/data/models/shipping_address_model.dart';
 import 'package:frutes_app/features/checkout/domain/entites/order_entity.dart';
 import 'package:uuid/uuid.dart';

@@ -199,4 +199,15 @@ class FirebaseAuthServices {
     final user = FirebaseAuth.instance.currentUser;
     return user != null;
   }
+  
+  Future<void> signOut() async {
+  try {
+    await GoogleSignIn().signOut();
+    await FacebookAuth.instance.logOut();
+    await FirebaseAuth.instance.signOut();
+  } catch (e) {
+    log("Exception in FirebaseAuthService.signOut: ${e.toString()}");
+    throw CustomException('حدث خطأ أثناء تسجيل الخروج');
+  }
+}
 }
