@@ -1,7 +1,7 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:frutes_app/core/entites/product_entity.dart';
+import 'package:frutes_app/core/widgets/custom_network_image.dart';
 
 class ProductHeader extends StatelessWidget {
   const ProductHeader({super.key, required this.product});
@@ -39,11 +39,9 @@ class ProductHeader extends StatelessWidget {
         ),
         Positioned.fill(
           child: Center(
-            child: Image.network(
-             product.imageUrl!,
+            child: SizedBox(
               height: 200,
-              fit: BoxFit.contain,
-            ),
+              child: CustomNetworkImage(imageUrl: product.imageUrl!))
           ),
         ),
       ],

@@ -17,6 +17,7 @@ class LogoutButton extends StatelessWidget {
 
     // الألوان للزر الخارجي (الذي يضغط عليه المستخدم)
     final outerBtnColor = isDarkMode
+        // ignore: deprecated_member_use
         ? const Color(0xFF1B5E37).withOpacity(0.2)
         : const Color(0xFFE8F5E9);
     final outerTextColor = isDarkMode
@@ -42,6 +43,7 @@ class LogoutButton extends StatelessWidget {
                       .borderRadius,
                   boxShadow: [
                     BoxShadow(
+                      // ignore: deprecated_member_use
                       color: Colors.black.withOpacity(0.1),
                       blurRadius: 10,
                       offset: const Offset(0, 10),

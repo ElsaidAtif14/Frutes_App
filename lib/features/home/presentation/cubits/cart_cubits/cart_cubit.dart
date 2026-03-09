@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:frutes_app/core/entites/product_entity.dart';
 import 'package:frutes_app/features/home/doamin/entites/cart_entity/cart_entity.dart';
 import 'package:frutes_app/features/home/doamin/entites/cart_entity/cart_item_entity.dart';
+// ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 
 part 'cart_state.dart';
