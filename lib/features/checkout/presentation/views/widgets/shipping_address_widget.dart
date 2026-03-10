@@ -15,7 +15,7 @@ class ShippingAddressWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     // log(context.read<OrderInputEntity>().toString());
     return PaymentItem(
-      tile: 'عنوان التوصيل',
+      title: 'عنوان التوصيل',
       child: Row(
         children: [
           SvgPicture.asset(Assets.assetsImagesLocation),
@@ -23,9 +23,7 @@ class ShippingAddressWidget extends StatelessWidget {
           Text(
             ' ${context.read<OrderEntity>().shippingAddressEntity}',
             textAlign: TextAlign.right,
-            style: TextStyles.regular13.copyWith(
-              color: const Color(0xFF4E5556),
-            ),
+            style: TextStyles.regular13
           ),
           const Spacer(),
           GestureDetector(

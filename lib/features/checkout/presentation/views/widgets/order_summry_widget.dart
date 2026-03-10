@@ -11,7 +11,7 @@ class OrderSummryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PaymentItem(
-      tile: 'ملخص الطلب',
+      title: 'ملخص الطلب',
       child: Column(
         children: [
           Row(
@@ -19,7 +19,6 @@ class OrderSummryWidget extends StatelessWidget {
               Text(
                 'المجموع الفرعي :',
                 style: TextStyles.regular13.copyWith(
-                  color: const Color(0xFF4E5556),
                 ),
               ),
               const Spacer(),
@@ -36,7 +35,6 @@ class OrderSummryWidget extends StatelessWidget {
               Text(
                 'التوصيل  :',
                 style: TextStyles.regular13.copyWith(
-                  color: const Color(0xFF4E5556),
                 ),
               ),
               const Spacer(),
@@ -46,7 +44,7 @@ class OrderSummryWidget extends StatelessWidget {
                   '30 جنية',
                   textAlign: TextAlign.right,
                   style: TextStyles.regular13.copyWith(
-                    color: const Color(0xFF4E5556),
+                   
                   ),
                 ),
               ),

@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:frutes_app/core/helper/show_bar.dart';
 import 'package:frutes_app/core/utils/app_keys.dart';
@@ -11,7 +10,9 @@ import 'package:frutes_app/features/checkout/domain/entites/paypal_payment_entit
 import 'package:frutes_app/features/checkout/presentation/manger/add_order_cubit/add_order_cubit.dart';
 import 'package:frutes_app/features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:frutes_app/features/checkout/presentation/views/widgets/checkout_steps_page_view.dart';
+import 'package:frutes_app/features/checkout/presentation/views/widgets/order_summary_bottom_sheet.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutViewBody extends StatefulWidget {
   const CheckoutViewBody({super.key});
@@ -25,6 +26,9 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   ValueNotifier<AutovalidateMode> valueNotifier = ValueNotifier(
     AutovalidateMode.disabled,
   );
+  int currentPageIndex = 0;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     pageController = PageController();
@@ -42,9 +46,6 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     valueNotifier.dispose();
     super.dispose();
   }
-
-  int currentPageIndex = 0;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -108,21 +109,34 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     } else {
       showBar(context, 'يرجي تحديد طريقه الدفع');
     }
-  }
+  }void _handleAddressValidation() {
+  final orderEntity = context.read<OrderEntity>();
+  final addOrderCubit = context.read<AddOrderCubit>(); // بنقرأ الـ cubit هنا
 
-  void _handleAddressValidation() {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
+  if (_formKey.currentState!.validate()) {
+    _formKey.currentState!.save();
+    
+    if (orderEntity.payWithCash == true) {
+      showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (context) => OrderSummaryBottomSheet(
+          orderEntity: orderEntity,
+          addOrderCubit: addOrderCubit,
+        ),
+      );
+    } else {
       pageController.animateToPage(
         currentPageIndex + 1,
         duration: const Duration(milliseconds: 300),
         curve: Curves.bounceIn,
       );
-    } else {
-      valueNotifier.value = AutovalidateMode.always;
     }
+  } else {
+    valueNotifier.value = AutovalidateMode.always;
   }
-
+}
   void _proccessPayment(BuildContext context) {
     var orderEntity = context.read<OrderEntity>();
     PaypalPaymentEntity paypalPaymentEntity = PaypalPaymentEntity.fromEntity(
@@ -143,7 +157,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
             log("onSuccess: $params");
             addOrderCubit.addOrder(order: orderEntity);
             Navigator.pop(context);
-            showBar(context, 'تمت عمليه الدفع بنجاح');
+            // showBar(context, 'تمت عمليه الدفع بنجاح');
           },
           onError: (error) {
             log("onError: $error");
